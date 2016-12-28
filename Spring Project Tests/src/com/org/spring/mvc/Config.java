@@ -28,6 +28,8 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableTransactionManagement
 public class Config extends WebMvcConfigurerAdapter {
 
+	// Change has been made
+	
 	@Bean
 	public ViewResolver CreateViewResolver() {
 
