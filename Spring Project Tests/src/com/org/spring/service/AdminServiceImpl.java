@@ -15,17 +15,31 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.org.spring.dao.StudentDAOImpl;
 import com.org.spring.to.StudentTO;
 
-@Service
+@Component
 public class AdminServiceImpl implements AdminService {
 
+	
+	// HibernateTemplate working
+	
+	@Autowired
+	HibernateTemplate hTemp;
+	
+	
+	
+	
 	@Override
 	public File uploadFile(CommonsMultipartFile file) {
+		
+		System.out.println("hTemp:"+hTemp);
 		// TODO Auto-generated method stub
 		String filePath = System.getProperty("user.home") + "/Desktop/Uploaded Files/" + file.getOriginalFilename();
 

@@ -31,7 +31,6 @@ import com.org.spring.hibernate.Student;
 @EnableTransactionManagement
 public class Config extends WebMvcConfigurerAdapter {
 
-	// Change has been made
 
 	@Bean
 	public ViewResolver CreateViewResolver() {
