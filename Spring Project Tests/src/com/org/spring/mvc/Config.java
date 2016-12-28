@@ -1,5 +1,6 @@
 package com.org.spring.mvc;
 
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -22,6 +23,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.org.spring.hibernate.Student;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.org.spring.*" })
@@ -29,7 +32,7 @@ import org.springframework.web.servlet.view.JstlView;
 public class Config extends WebMvcConfigurerAdapter {
 
 	// Change has been made
-	
+
 	@Bean
 	public ViewResolver CreateViewResolver() {
 
@@ -62,9 +65,9 @@ public class Config extends WebMvcConfigurerAdapter {
 		return messageSource;
 
 	}
-	
-	//another change
-	
+
+	// another change
+
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -77,7 +80,9 @@ public class Config extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public LocalSessionFactoryBean sessionFactory(DataSource ds) {
+	public LocalSessionFactoryBean sessionFactory(DataSource ds) throws SQLException {
+
+		System.out.println(ds.getConnection().toString());
 
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
@@ -87,6 +92,7 @@ public class Config extends WebMvcConfigurerAdapter {
 		Properties prop = new Properties();
 
 		prop.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+		prop.put("hibernate.hbm2ddl.auto", "create");
 		sessionFactory.setHibernateProperties(prop);
 
 		return sessionFactory;
@@ -95,15 +101,25 @@ public class Config extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public HibernateTemplate hibernateTemplate(SessionFactory sf) {
-
+		//System.out.println("sf:" + sf);
 		HibernateTemplate hTemp = new HibernateTemplate(sf);
-
+		
+		Student student = new Student();
+		student.setName("Sa");
+		student.setPhone(9999999l);
+		student.setEmail("sasa@gmail.com");
+		student.setCourse("Java");
+		student.setCounsellor("Abc");
+		
+		
+		
+		//System.out.println("hTemp fetchsize in config:" + hTemp.save(student));
 		return hTemp;
 	}
 
 	@Bean
 	public HibernateTransactionManager transactionManager(SessionFactory sf) {
-
+		System.out.println("Tx Manager:" + sf);
 		HibernateTransactionManager txManager = new HibernateTransactionManager(sf);
 
 		return txManager;

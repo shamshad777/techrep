@@ -36,26 +36,32 @@ public class AdminController {
 	@RequestMapping(value = { "/upload.do" }, method = RequestMethod.POST)
 	public String uploadFile(@ModelAttribute(value = "uploadCommand") UploadCommand command, BindingResult errors,
 			HttpServletRequest req, @RequestParam("file") CommonsMultipartFile file) {
-		System.out.println("This is uploadFile method");
+		//System.out.println("This is uploadFile method");
 
-		System.out.println(file.getSize());
+		//System.out.println(file.getSize());
 
 		validator.validate(command, errors);
 
 		if (errors.hasErrors()) {
 			 req.setAttribute("MSG", "Error occured.");
-			System.out.println(errors.getErrorCount());
+			//System.out.println(errors.getErrorCount());
 			return "upload";
 
 		} else {
 
 			File uploadedFile = service.uploadFile(file);
 			List<StudentTO> students = service.processFile(uploadedFile);
-			Boolean flag = service.addStudents(students);
+			//Boolean flag = service.addStudents(students);
 			
-			System.out.println(students);
+			for(StudentTO st: students)
+			{
+				
+				System.out.println("Name: "+st.getName()+" , Phone: "+st.getPhone()+", Course: "+st.getCourse()+", Email: "+st.getEmail()+", Counsellor: "+st.getCounsellor());
+				
+				
+			}
 			
-			System.out.println("--" + uploadedFile + "--");
+		//	System.out.println("--" + uploadedFile + "--");
 
 			if (uploadedFile != null) {
 				System.out.println("Done");

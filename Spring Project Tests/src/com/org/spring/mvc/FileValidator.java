@@ -23,9 +23,9 @@ public class FileValidator implements Validator {
 		CommonsMultipartFile file = command.getFile();
 		
 	
-System.out.println("validate");
+//System.out.println("validate");
 		if (file.getSize() > 100000) {
-			System.out.println("Inside validate:"+file.getSize());
+			//System.out.println("Inside validate:"+file.getSize());
 			errors.rejectValue("file", "errors.file.size", "File is too large");
 
 		}

@@ -57,7 +57,7 @@ public class AdminServiceImpl implements AdminService {
 		try (ByteArrayInputStream bis = new ByteArrayInputStream(FileUtils.readFileToByteArray(file));) {
 
 			if (file.getName().endsWith("xls")) {
-				System.out.println("xls");
+			//	System.out.println("xls");
 				workbook = new HSSFWorkbook(bis);
 			} else if (file.getName().endsWith("xlsx")) {
 
@@ -73,36 +73,36 @@ public class AdminServiceImpl implements AdminService {
 
 					Row row = rowIterator.next();
 
-					System.out.println("Row number:" + row.getRowNum());
+				//	System.out.println("Row number:" + row.getRowNum());
 					if (row.getRowNum() == 0) {
 
 						continue;
 					} else {
 
-						System.out.println("inside rowiterator");
+					//	System.out.println("inside rowiterator");
 						Iterator<Cell> cellIterator = row.cellIterator();
 						StudentTO to = new StudentTO();
 
 						while (cellIterator.hasNext()) {
 							Cell cell = cellIterator.next();
-							System.out.println("inside celliterator");
+							//System.out.println("inside celliterator");
 							// System.out.println(cell.getColumnIndex());
 							switch (cell.getColumnIndex()) {
 							case 0:
-								System.out.println("case 0");
+							//	System.out.println("case 0");
 								Double id = cell.getNumericCellValue();
 
 								to.setId(id.intValue());
 								break;
 
 							case 1:
-								System.out.println("case 1");
+						//		System.out.println("case 1");
 								to.setName(cell.getStringCellValue());
 
 								break;
 
 							case 2:
-								System.out.println("case 2");
+							//	System.out.println("case 2");
 								Double phone = cell.getNumericCellValue();
 
 								to.setPhone(phone.longValue());
@@ -110,19 +110,19 @@ public class AdminServiceImpl implements AdminService {
 								break;
 
 							case 3:
-								System.out.println("case 3");
+						//		System.out.println("case 3");
 								to.setEmail(cell.getStringCellValue());
 								break;
 
 							case 4:
-								System.out.println("case 4");
+						//		System.out.println("case 4");
 								to.setCourse(cell.getStringCellValue());
 								break;
 
 							case 5:
-								System.out.println("case 5");
+						//		System.out.println("case 5");
 								to.setCounsellor(cell.getStringCellValue());
-								System.out.println("hello");
+						//		System.out.println("hello");
 								ls.add(to);
 
 								
@@ -132,7 +132,7 @@ public class AdminServiceImpl implements AdminService {
 							
 							
 
-							System.out.println("done it");
+						//	System.out.println("done it");
 
 						}
 
@@ -140,7 +140,7 @@ public class AdminServiceImpl implements AdminService {
 
 				}
 
-				System.out.println("Number of sheets:" + workbook.getNumberOfSheets());
+			//	System.out.println("Number of sheets:" + workbook.getNumberOfSheets());
 
 				
 

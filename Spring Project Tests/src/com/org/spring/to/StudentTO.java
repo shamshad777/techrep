@@ -14,6 +14,11 @@ public class StudentTO {
 	
 	private String counsellor;
 
+	
+	public StudentTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	/**
 	 * @return the id
 	 */

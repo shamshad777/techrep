@@ -15,15 +15,15 @@ import com.org.spring.to.StudentTO;
 @Transactional
 public class StudentDAOImpl implements StudentDAO {
 
-	@Autowired
-	HibernateTemplate hibernateTemplate;
+	//@Autowired
+	//HibernateTemplate hTemp;
 	
 	@Override
 	public boolean insertStudents(List<StudentTO> list) {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Insert student method:"+list);
-		System.out.println("Hibernate Temp:"+hibernateTemplate);
+		//System.out.println("Hibernate Temp:"+hTemp);
 		
 		Student student = new Student();
 		student.setName("Sa");
