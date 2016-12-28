@@ -2,28 +2,38 @@ package com.org.spring.dao;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.org.spring.hibernate.Student;
 import com.org.spring.to.StudentTO;
 
 @Repository
 @Transactional
-public class StudentDAOImpl implements StudentDAO {
+public class StudentDAOImp implements StudentDAO {
 
-	//@Autowired
-	//HibernateTemplate hTemp;
+	@Autowired
+	HibernateTemplate hTemp;
+	
+	{
+		
+		
+		System.out.println("Inside dao:"+hTemp);	
+		
+	}
+	
+	
 	
 	@Override
 	public boolean insertStudents(List<StudentTO> list) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Insert student method:"+list);
-		//System.out.println("Hibernate Temp:"+hTemp);
+		System.out.println("Inside dao:"+hTemp);
+		
+		
+/*		System.out.println("Insert student method:"+list);
+		
 		
 		Student student = new Student();
 		student.setName("Sa");
@@ -38,17 +48,11 @@ public class StudentDAOImpl implements StudentDAO {
 		//System.out.println(list.get(1));
 		
 		
-		//hibernateTemplate.save(student);
-		System.out.println(" rows affected.");
+		Integer n = (Integer)hTemp.save(student);
+		System.out.println(n+" rows affected.");*/
 		
-		return true;
-			
-		}
 		
-	
-	
+		return false;
+	}
 
 }
-
-
-

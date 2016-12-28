@@ -98,7 +98,7 @@ public class Config extends WebMvcConfigurerAdapter {
 
 	}
 
-	@Bean
+	@Bean(name="hTemp")
 	public HibernateTemplate hibernateTemplate(SessionFactory sf) {
 		//System.out.println("sf:" + sf);
 		HibernateTemplate hTemp = new HibernateTemplate(sf);

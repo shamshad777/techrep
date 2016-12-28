@@ -36,10 +36,7 @@ public class AdminController {
 	@RequestMapping(value = { "/upload.do" }, method = RequestMethod.POST)
 	public String uploadFile(@ModelAttribute(value = "uploadCommand") UploadCommand command, BindingResult errors,
 			HttpServletRequest req, @RequestParam("file") CommonsMultipartFile file) {
-		//System.out.println("This is uploadFile method");
-
-		//System.out.println(file.getSize());
-
+		
 		validator.validate(command, errors);
 
 		if (errors.hasErrors()) {
@@ -51,8 +48,8 @@ public class AdminController {
 
 			File uploadedFile = service.uploadFile(file);
 			List<StudentTO> students = service.processFile(uploadedFile);
-			//Boolean flag = service.addStudents(students);
-			
+			Boolean flag = service.addStudents(students);
+			System.out.println(flag);
 			for(StudentTO st: students)
 			{
 				
