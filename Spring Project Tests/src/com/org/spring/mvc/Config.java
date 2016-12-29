@@ -1,6 +1,5 @@
 package com.org.spring.mvc;
 
-import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -23,10 +22,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import com.org.spring.hibernate.Student;
-
-@Configuration
 @EnableWebMvc
+@Configuration
 @ComponentScan(basePackages = { "com.org.spring.*" })
 @EnableTransactionManagement
 public class Config extends WebMvcConfigurerAdapter {
@@ -79,9 +76,9 @@ public class Config extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public LocalSessionFactoryBean sessionFactory(DataSource ds) throws SQLException {
+	public LocalSessionFactoryBean sessionFactory(DataSource ds) {
 
-		System.out.println(ds.getConnection().toString());
+		//System.out.println(ds.getConnection().toString());
 
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
@@ -98,27 +95,17 @@ public class Config extends WebMvcConfigurerAdapter {
 
 	}
 
-	@Bean(name="hTemp")
+	@Bean
 	public HibernateTemplate hibernateTemplate(SessionFactory sf) {
-		//System.out.println("sf:" + sf);
+	
 		HibernateTemplate hTemp = new HibernateTemplate(sf);
-		
-		Student student = new Student();
-		student.setName("Sa");
-		student.setPhone(9999999l);
-		student.setEmail("sasa@gmail.com");
-		student.setCourse("Java");
-		student.setCounsellor("Abc");
-		
-		
-		
-		//System.out.println("hTemp fetchsize in config:" + hTemp.save(student));
+	
 		return hTemp;
 	}
 
 	@Bean
 	public HibernateTransactionManager transactionManager(SessionFactory sf) {
-		System.out.println("Tx Manager:" + sf);
+		
 		HibernateTransactionManager txManager = new HibernateTransactionManager(sf);
 
 		return txManager;

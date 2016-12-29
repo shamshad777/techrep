@@ -13,32 +13,43 @@ public class Student {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String name;
-	
-	@Column(name="phone")
+
+	@Column(name = "phone")
 	private Long phone;
-	
-	
-	@Column(name="email")
+
+	@Column(name = "email")
 	private String email;
-	
-	
-	@Column(name="course")
+
+	@Column(name = "course")
 	private String course;
-	
-	@Column(name="counsellor")
+
+	@Column(name = "counsellor")
 	private String counsellor;
 
-	
 	public Student() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+
+	public Student(String name, Long phone, String email, String course, String counsellor) {
+		super();
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+		this.course = course;
+		this.counsellor = counsellor;
+	}
+
+
+
+
 	/**
 	 * @return the id
 	 */
@@ -47,7 +58,8 @@ public class Student {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -61,7 +73,8 @@ public class Student {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -75,7 +88,8 @@ public class Student {
 	}
 
 	/**
-	 * @param phone the phone to set
+	 * @param phone
+	 *            the phone to set
 	 */
 	public void setPhone(Long phone) {
 		this.phone = phone;
@@ -89,7 +103,8 @@ public class Student {
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -103,7 +118,8 @@ public class Student {
 	}
 
 	/**
-	 * @param course the course to set
+	 * @param course
+	 *            the course to set
 	 */
 	public void setCourse(String course) {
 		this.course = course;
@@ -117,14 +133,11 @@ public class Student {
 	}
 
 	/**
-	 * @param counsellor the counsellor to set
+	 * @param counsellor
+	 *            the counsellor to set
 	 */
 	public void setCounsellor(String counsellor) {
 		this.counsellor = counsellor;
 	}
-	
-	
-	
-	
-	
+
 }
